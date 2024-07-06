@@ -4,12 +4,14 @@ const UncontrolledUseRef = () => {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const handleFormSubmit = (e: FormEvent<HTMLButtonElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Username:", usernameRef.current?.value);
     console.log("Password:", passwordRef.current?.value);
   };
+
   return (
+    <form onSubmit={handleFormSubmit}>
     <fieldset className="form-group">
       <legend>
         <h1>Uncontrolled form (useRef)</h1>
@@ -18,7 +20,6 @@ const UncontrolledUseRef = () => {
       <br />
       <input
         ref={usernameRef}
-        id="username"
         placeholder="Username"
         type="text"
         name="username"
@@ -28,16 +29,16 @@ const UncontrolledUseRef = () => {
       <br />
       <input
         ref={passwordRef}
-        id="password"
         placeholder="Password"
-        type="password"
+        type="text"
         name="password"
       ></input>
       <br />
-      <button type="submit" onSubmit={handleFormSubmit}>
+      <button type="submit">
         Login
       </button>
     </fieldset>
+    </form>
   );
 };
 

@@ -1,18 +1,20 @@
 import { FormEvent } from "react";
 
 const UncontrolledEvent = () => {
-  const handleFormSubmit = (e: FormEvent<HTMLButtonElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const target = e.target as typeof e.target & {
       username: { value: string };
       password: { value: string };
     };
-    const username = target.username.value;
-    const password = target.password.value;
-    console.log({ username, password });
+
+    console.log("Username:", target.username.value);
+    console.log("Password:", target.password.value);
   };
+
   return (
-    <fieldset className="form-group">
+    <form onSubmit={handleFormSubmit}>
+      <fieldset className="form-group">
       <legend>
         <h1>Uncontrolled form (event)</h1>
       </legend>
@@ -22,12 +24,13 @@ const UncontrolledEvent = () => {
       <br />
       <label>Password</label>
       <br />
-      <input placeholder="Password" type="password" name="password"></input>
+      <input placeholder="Password" type="text" name="password"></input>
       <br />
-      <button type="submit" onSubmit={handleFormSubmit}>
+      <button type="submit">
         Login
       </button>
     </fieldset>
+    </form>
   );
 };
 

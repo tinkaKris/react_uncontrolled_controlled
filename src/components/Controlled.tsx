@@ -4,12 +4,14 @@ const Controlled = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleFormSubmit = (e: FormEvent<HTMLButtonElement>) => {
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Username:", username);
     console.log("Password:", password);
   };
+
   return (
+    <form onSubmit={handleFormSubmit}>
     <fieldset className="form-group">
       <legend>
         <h1>Controlled form</h1>
@@ -17,7 +19,6 @@ const Controlled = () => {
       <label>Username</label>
       <br />
       <input
-        id="username"
         placeholder="Username"
         type="text"
         name="username"
@@ -27,17 +28,17 @@ const Controlled = () => {
       <label>Password</label>
       <br />
       <input
-        id="password"
         placeholder="Password"
-        type="password"
+        type="text"
         name="password"
         onChange={(e) => setPassword(e.target.value)}
       ></input>
       <br />
-      <button type="submit" onSubmit={handleFormSubmit}>
+      <button type="submit">
         Login
       </button>
     </fieldset>
+    </form>
   );
 };
 
